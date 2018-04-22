@@ -17,7 +17,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
-        <jettyVersion>9.3.9.v20160517</jettyVersion>
+        <!--<jettyVersion>8.2.0.v20160908</jettyVersion>-->
+        <jettyVersion>9.4.9.v20180320</jettyVersion>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <joda-time.version>2.9.9</joda-time.version>
@@ -25,6 +26,10 @@
         <quartz.version>2.2.1</quartz.version>
         <guice.version>4.2.0</guice.version>
         <jopt-simple.version>5.0.4</jopt-simple.version>
+        <codahale.metrics.version>3.0.2</codahale.metrics.version>
+        <org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
+        <velocity.version>1.7</velocity.version>
+        <velocity.tools.version>2.0</velocity.tools.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
