@@ -22,6 +22,7 @@ import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 import org.apache.log4j.Logger;
+import org.apache.velocity.app.VelocityEngine;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -137,5 +138,7 @@ public abstract class AzkabanServer {
     }
 
     public abstract Props getServerProps();
+
+    public abstract VelocityEngine getVelocityEngine();
 
 }

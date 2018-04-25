@@ -9,6 +9,7 @@ import azkaban.webapp.servlet.HelloServlet;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.apache.log4j.Logger;
+import org.apache.velocity.app.VelocityEngine;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -18,6 +19,8 @@ import org.eclipse.jetty.util.thread.ThreadPool;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import static java.util.Objects.requireNonNull;
+
 @Singleton
 public class AzkabanWebServer extends AzkabanServer {
     private static final Logger logger = Logger.getLogger(AzkabanWebServer.class);
@@ -26,17 +29,19 @@ public class AzkabanWebServer extends AzkabanServer {
 
     private final Props props;
     private final Server server;
+    private final VelocityEngine velocityEngine;
 
     @Inject
-    public AzkabanWebServer(final Props props, final Server server) {
+    public AzkabanWebServer(final Props props, final Server server, final VelocityEngine velocityEngine) {
         this.props = props;
         this.server = server;
+        this.velocityEngine = requireNonNull(velocityEngine, "velocityEngine is null.");
     }
 
     public static void main(String[] args) throws Exception{
         StdOutErrRedirect.redirectOutAndErrToLog();
         logger.info("Starting Jetty Azkaban Web Server...");
-        final Props props = AzkabanServer.loadProps(new String[]{"-conf", "azkaban-web-server\\target\\classes\\conf\\"});
+        final Props props = AzkabanServer.loadProps(new String[]{"-conf", "local\\conf"});
         if(props == null){
             logger.error("Azkaban Properties not loaded. Exiting..");
             System.exit(1);
@@ -106,5 +111,10 @@ public class AzkabanWebServer extends AzkabanServer {
     @Override
     public Props getServerProps() {
         return this.props;
+    }
+
+    @Override
+    public VelocityEngine getVelocityEngine() {
+        return this.velocityEngine;
     }
 }
