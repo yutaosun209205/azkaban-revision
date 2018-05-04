@@ -13,7 +13,7 @@ public class HelloServlet extends AbstractAzkabanServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final Page page = newPage(req, resp, "velocity\\login.vm");
+        final Page page = newPage(req, resp, "azkaban\\webapp\\servlet\\velocity\\login.vm");
         page.add("passwordPlaceholder", this.passwordPlaceholder);
         /*if (errorMsg != null) {
             page.add("errorMsg", "ERROR");

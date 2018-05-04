@@ -18,10 +18,10 @@
 <html lang="en">
 <head>
 
-##  #parse("azkaban/webapp/servlet/velocity/style.vm")
-##  #parse("azkaban/webapp/servlet/velocity/javascript.vm")
+  #parse("azkaban/webapp/servlet/velocity/style.vm")
+  #parse("azkaban/webapp/servlet/velocity/javascript.vm")
 
-##  <script type="text/javascript" src="${context}/js/azkaban/view/login.js"></script>
+  <script type="text/javascript" src="${context}/js/azkaban/view/login.js"></script>
   <script type="text/javascript">
     var contextURL = "${context}";
   </script>
@@ -30,7 +30,7 @@
 
   #set ($current_page = "all")
   #set ($navbar_disabled = 1)
-##  #parse ("azkaban/webapp/servlet/velocity/nav.vm")
+  #parse ("azkaban/webapp/servlet/velocity/nav.vm")
 
 <div class="container-full">
   <div class="login">

@@ -5,12 +5,14 @@ import azkaban.AzkabanCommonModule;
 import azkaban.ServiceProvider;
 import azkaban.server.AzkabanServer;
 import azkaban.utils.StdOutErrRedirect;
-import azkaban.webapp.servlet.HelloServlet;
+import azkaban.webapp.servlet.IndexRedirectServlet;
+import azkaban.webapp.servlet.ProjectServlet;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
@@ -90,7 +92,20 @@ public class AzkabanWebServer extends AzkabanServer {
         //equals to 'contextHandler.setBaseResource(staticDir);'
         contextHandler.setResourceBase(staticDir);
 
-        contextHandler.addServlet(new ServletHolder(new HelloServlet()), "/");
+        contextHandler.addServlet(new ServletHolder(new ProjectServlet()),"/index");
+
+        contextHandler.addServlet(new ServletHolder(new IndexRedirectServlet(defaultServletPath)),"/");
+        final ServletHolder staticServlet = new ServletHolder(new DefaultServlet());
+        contextHandler.addServlet(staticServlet, "/css/*");
+        contextHandler.addServlet(staticServlet, "/js/*");
+        contextHandler.addServlet(staticServlet, "/images/*");
+        contextHandler.addServlet(staticServlet, "/fonts/*");
+        contextHandler.addServlet(staticServlet, "/favicon.ico");
+
+
+
+
+        //contextHandler.addServlet(new ServletHolder(new HelloServlet()), "/");
 
 
 
